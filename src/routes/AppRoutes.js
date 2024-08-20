@@ -1,3 +1,7 @@
+/**
+ * ルーディング＆アニメーション管理js
+ */
+
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -10,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Start from "../pages/Start";
 import Main from "../pages/Main";
 
+//アニメーション場面のステータス設定
 const pageVariants = {
   initial: {
     opacity: 0,
@@ -29,6 +34,7 @@ const pageVariants = {
   },
 };
 
+//Transitionの設定
 const pageTransition = {
   duration: 0.5,
 };
@@ -39,6 +45,7 @@ const AppRoutes = () => {
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
+        {/*Start*/}
         <Route
           path="/"
           element={
@@ -53,6 +60,7 @@ const AppRoutes = () => {
             </motion.div>
           }
         />
+        {/*Main*/}
         <Route
           path="/main"
           element={

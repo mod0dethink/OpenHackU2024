@@ -1,9 +1,17 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import "./index.css";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
+    <Router>
+      <div>
+        <AppRoutes />
+      </div>
+    </Router>
+    /*
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -20,6 +28,7 @@ function App() {
         </a>
       </header>
     </div>
+    */
   );
 }
 

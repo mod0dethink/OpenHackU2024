@@ -1,3 +1,20 @@
+/*Fixed styles*/
+
+body {
+  background-color: #cccccc;
+  padding: 0;
+  margin: 0;
+}
+
+/*Individual styles*/
+.background-linear {
+  background: radial-gradient(circle, #fff, #ccc 80%);
+}
+
+.button-shadow {
+  box-shadow: 10px 10px #626262;
+}
+
 /*Sidebar-CSS*/
 .sidebar {
   position: absolute;
@@ -7,7 +24,7 @@
   bottom: 20px;
   border-radius: 20px;
   width: 70px;
-  background: #74dcff56;
+  background: #ffffff;
   backdrop-filter: blur(10px);
   transition: width 0.45s;
 }
@@ -28,11 +45,11 @@
   height: 64px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  padding: 0 6px;
+  padding: 0 10px;
 }
 
 .sidebar-burger {
-  width: 60px;
+  width: 50px;
   height: 72px;
   display: grid;
   place-items: center;
@@ -41,7 +58,7 @@
 
 .sidebar nav {
   display: grid;
-  padding: 0 6px;
+  padding: 0 10px;
   gap: 20px;
 }
 
@@ -49,8 +66,8 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  height: 60px;
-  width: 60px;
+  height: 70px;
+  width: 50px;
   padding: 0 0;
   border-radius: 8px;
   opacity: 0.7;

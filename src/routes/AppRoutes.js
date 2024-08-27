@@ -13,6 +13,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import Start from "../pages/Start";
 import Main from "../pages/Main";
+import AccountDetail from "../pages/AccountDetail";
+import AccountEdit from "../pages/AccountEdit";
+import FavoriteBrands from "../pages/FavoriteBrands";
+import Sidebar from "../components/common/Aside";
 
 //アニメーション場面のステータス設定
 const pageVariants = {
@@ -72,6 +76,35 @@ const AppRoutes = () => {
               transition={pageTransition}
             >
               <Main />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/accountDetail"
+          element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <AccountDetail />
+            </motion.div>
+          }
+        />
+
+        <Route
+          path="/favoriteBrands"
+          element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <FavoriteBrands />
             </motion.div>
           }
         />

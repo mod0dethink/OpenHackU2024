@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/images/test.svg";
 import "../../assets/styles/styles.css";
 
 import Home from "../../assets/images/Home.png";
@@ -13,7 +12,7 @@ import Menu from "../../assets/images/Menu.png";
 
 const navItems = ["Home", "Account", "Setting", "Contact", "Help"];
 const navIcons = [Home, Account, Setting, Contact, Help];
-const navPath = ["", ""];
+const navPath = ["", "main", "accountDetail", "favoriteBrands"];
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);

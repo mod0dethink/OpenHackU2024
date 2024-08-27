@@ -7,7 +7,7 @@ import testImg from "../assets/images/testimg.png";
 
 const Start = () => {
   return (
-    <div className="background-linear w-[100vw] h-screen flex justify-evenly items-center">
+    <div className="w-[100vw] h-screen flex justify-evenly items-center">
       {/*
       <p className="text-[50px]">OUTFIT</p>
       <p>our development page</p>

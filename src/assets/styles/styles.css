@@ -1,15 +1,13 @@
 /*Fixed styles*/
 
 body {
-  background-color: #cccccc;
+  background: linear-gradient(to right, #c1ede2, #c1cded);
+
   padding: 0;
   margin: 0;
 }
 
 /*Individual styles*/
-.background-linear {
-  background: radial-gradient(circle, #fff, #ccc 80%);
-}
 
 .button-shadow {
   box-shadow: 10px 10px #626262;

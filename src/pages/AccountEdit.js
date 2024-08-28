@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import images from "../components/common/AssetImg";
 import Sidebar from "../components/common/Aside";
-
 import Logo from "../components/layout/Layout";
+import axios from "axios"; // axiosをインポート
 
 //変数達
 /**
@@ -18,7 +18,7 @@ const AccountEdit = () => {
 
   //サーバーとやり取りする値「UserName(アカウント名),UserImg(ブランドのWeburl)」
   const [formData, setFormData] = useState({
-    UserName: "teset", // 初期値(ログインしている場合はサーバーから取得したい)
+    UserName: "", // 初期値(ログインしている場合はサーバーから取得したい)
     UserImg: null,
   });
 
@@ -49,10 +49,18 @@ const AccountEdit = () => {
   };
 
   //SAVEボタンが押された際の処理
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // デフォルトのフォーム送信を防止
-    console.log(formData.UserName);
-    console.log(formData.UserImg);
+    try {
+      const response = await axios.post("http://localhost:8080/update-username", {
+        new_username: formData.UserName,
+      }, { withCredentials: true }); // withCredentials オプションを追加
+      console.log(response.data);
+      alert("ユーザー名が正常に更新されました");
+    } catch (error) {
+      console.error(error);
+      alert("ユーザー名の更新に失敗しました");
+    }
   };
 
   return (

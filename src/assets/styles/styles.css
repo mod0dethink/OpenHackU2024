@@ -12,6 +12,9 @@ body {
 .button-shadow {
   box-shadow: 10px 10px #626262;
 }
+.button-shadow2 {
+  box-shadow: 10px 10px #000;
+}
 
 /*Sidebar-CSS*/
 .sidebar {

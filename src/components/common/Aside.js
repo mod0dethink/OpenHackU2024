@@ -10,9 +10,15 @@ import Help from "../../assets/images/Help.png";
 import Close from "../../assets/images/Close.png";
 import Menu from "../../assets/images/Menu.png";
 
-const navItems = ["Home", "Account", "Setting", "Contact", "Help"];
+const navItems = ["Home", "Account", "MyBrands", "", "Help"];
 const navIcons = [Home, Account, Setting, Contact, Help];
-const navPath = ["", "main", "accountDetail", "favoriteBrands"];
+const navPath = [
+  "",
+  "main",
+  "favoriteBrands",
+  "accountDetail",
+  "favoriteBrands",
+];
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);

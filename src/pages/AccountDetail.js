@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/common/Aside";
 import Logo from "../components/layout/Layout";
 import images from "../components/common/AssetImg";
 
+/**
+ * UserImg = プロフ画像
+ * UserName = ユーザーネーム
+ * @returns
+ */
 const AccountDetail = () => {
-  const UserImg = images.testimg;
-  const UserName = "teset";
+  //UserImg(プロフ画像),UserName(ユーザーネーム)
+  const [UserImg, setUserImg] = useState(images.testimg);
+  const [UserName, setUserName] = useState("teset");
 
   return (
     <div className="w-[100vw] h-screen flex flex-col justify-center items-center">

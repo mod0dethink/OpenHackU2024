@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "../components/common/Aside";
+import images from "../components/common/AssetImg";
 
 const FavoriteBrands = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,13 @@ const FavoriteBrands = () => {
     }));
   };
 
+  //FavoriteBrandListの値
+  const Brandlist = [
+    { name: "AIVER", url: "https://aiver.online/" },
+    { name: "gibous", url: "https://gibous.store/" },
+    { name: "Casper John", url: "https://www.casperjohn.com/" },
+  ];
+
   return (
     <div className="w-[100vw] h-screen flex justify-end items-center space-x-[300px]">
       <Sidebar />
@@ -34,6 +42,7 @@ const FavoriteBrands = () => {
                   type={type}
                   name={name}
                   value={value}
+                  onChange={handleChange}
                   className="bg-[#CCCCCC] w-[400px] h-[50px] rounded-[10px]"
                 />
               </label>
@@ -47,7 +56,24 @@ const FavoriteBrands = () => {
           </button>
         </form>
       </section>
-      <section className="bg-[#fff] w-[870px] h-screen"></section>
+
+      <section className="bg-[#fff] w-[870px] h-screen flex flex-col items-center justify-start">
+        <div className="text-[48px] font-bold h-[200px] flex flex-col justify-center">
+          FavoriteBrands
+        </div>
+        <div className="overflow-y-auto w-[770px]">
+          {Brandlist.map(({ name, url, index }) => (
+            <button
+              key={index}
+              className="flex justify-between items-center w-[100%] h-[100px] border-t border-solid border-[#CCCCCC]"
+            >
+              <img src={images.Favorite} className="w-[40px] h-[36px]" />
+              <p className="text-[32px]">{name}</p>
+              <img src={images.Next} className="w-[25px] h-[40px]" />
+            </button>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

@@ -10,14 +10,24 @@ import Help from "../../assets/images/Help.png";
 import Close from "../../assets/images/Close.png";
 import Menu from "../../assets/images/Menu.png";
 
-const navItems = ["Home", "Account", "MyBrands", "", "Help"];
+const navItems = [
+  "Home",
+  "main",
+  "MyBrands",
+  "AccountDrtail",
+  "AccountEdit",
+  "Login",
+  "Register",
+];
 const navIcons = [Home, Account, Setting, Contact, Help];
 const navPath = [
   "",
   "main",
   "favoriteBrands",
   "accountDetail",
-  "favoriteBrands",
+  "accountEdit",
+  "login",
+  "register",
 ];
 
 const Sidebar = () => {

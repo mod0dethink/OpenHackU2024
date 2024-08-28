@@ -20,6 +20,8 @@ import Height from "../../assets/images/Height.png";
 import Length from "../../assets/images/Length.png";
 import Wight from "../../assets/images/Width.png";
 import Outseam from "../../assets/images/Outseam.png";
+import Favorite from "../../assets/images/favorite.png";
+import Next from "../../assets/images/next.png";
 
 const images = {
   Account,
@@ -44,6 +46,8 @@ const images = {
   Length,
   Wight,
   Outseam,
+  Favorite,
+  Next,
 };
 
 export default images;

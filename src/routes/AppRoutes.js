@@ -17,6 +17,8 @@ import AccountDetail from "../pages/AccountDetail";
 import AccountEdit from "../pages/AccountEdit";
 import FavoriteBrands from "../pages/FavoriteBrands";
 import Sidebar from "../components/common/Aside";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 //アニメーション場面のステータス設定
 const pageVariants = {
@@ -93,6 +95,20 @@ const AppRoutes = () => {
             </motion.div>
           }
         />
+        <Route
+          path="/accountEdit"
+          element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <AccountEdit />
+            </motion.div>
+          }
+        />
 
         <Route
           path="/favoriteBrands"
@@ -105,6 +121,35 @@ const AppRoutes = () => {
               transition={pageTransition}
             >
               <FavoriteBrands />
+            </motion.div>
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <Login />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <Register />
             </motion.div>
           }
         />

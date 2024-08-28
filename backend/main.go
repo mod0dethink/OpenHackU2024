@@ -2,7 +2,9 @@ package main
 
 import (
 	"net/http"
+	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
@@ -33,6 +35,16 @@ func main() {
 
 	router := gin.Default()
 
+	// CORS ミドルウェアの設定
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowMethods:     []string{"POST", "GET", "OPTIONS", "PUT", "DELETE"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
+
 	// セッションミドルウェアの設定
 	store := cookie.NewStore([]byte("secret"))
 	router.Use(sessions.Sessions("mysession", store))
@@ -40,6 +52,7 @@ func main() {
 	router.POST("/signup", signUp)
 	router.POST("/login", login)
 	router.GET("/profile", profile)
+	router.POST("/update-username", updateUsername) // 新しいエンドポイントを追加
 
 	router.Run(":8080")
 }
@@ -72,7 +85,7 @@ func login(c *gin.Context) {
 	}
 
 	var user User
-	if err := db.Where("username = ? AND password = ?", loginUser.Username, loginUser.Password).First(&user).Error; err != nil {
+	if err := db.Where("mailaddress = ? AND password = ?", loginUser.MailAddress, loginUser.Password).First(&user).Error; err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"エラー": "無効な認証情報です"})
 		return
 	}
@@ -95,4 +108,39 @@ func profile(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"ユーザー": user})
+}
+
+func updateUsername(c *gin.Context) {
+	session := sessions.Default(c)
+	currentUser := session.Get("user")
+	if currentUser == nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"エラー": "ログインが必要です"})
+		return
+	}
+
+	var request struct {
+		NewUsername string `json:"new_username"`
+	}
+	if err := c.BindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"エラー": "無効な入力です"})
+		return
+	}
+
+	var user User
+	if err := db.Where("username = ?", currentUser).First(&user).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"エラー": "ユーザーが見つかりません"})
+		return
+	}
+
+	user.Username = request.NewUsername
+	if err := db.Save(&user).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"エラー": "ユーザー名の更新に失敗しました"})
+		return
+	}
+
+	// セッションのユーザー名を更新
+	session.Set("user", user.Username)
+	session.Save()
+
+	c.JSON(http.StatusOK, gin.H{"メッセージ": "ユーザー名が正常に更新されました"})
 }

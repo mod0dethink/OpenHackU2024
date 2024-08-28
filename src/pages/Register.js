@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import Logo from "../components/layout/Layout";
 import images from "../components/common/AssetImg";
+import axios from "axios"; // axiosをインポート
 
 const Register = () => {
-  //送信するフォームデータ、「name(ユーザーネーム),email(メールアドレス),pass(パスワード)」
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     pass: "",
   });
 
-  //input配列。---:p---
   const LoginBox = [
     { name: "name", label: "Name", type: "text" },
     { name: "email", label: "Email", type: "email" },
     { name: "pass", label: "Password", type: "password" },
   ];
 
-  //inputの値の"入力最中"に更新される関数---:p---
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -26,18 +24,27 @@ const Register = () => {
     }));
   };
 
-  //registerボタン押後、フォーム送信時の処理
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const response = await axios.post("http://localhost:8080/signup", {
+        username: formData.name,
+        password: formData.pass,
+        mailaddress: formData.email,
+      });
+      console.log(response.data);
+      alert("アカウントが正常に作成されました");
+    } catch (error) {
+      console.error(error);
+      alert("アカウント作成に失敗しました");
+    }
   };
 
   return (
     <div className="w-[100vw] h-screen flex flex-col justify-evenly items-center xl:flex-row">
-      {" "}
       <Logo />
       <section>
-        <img src={images.RegisterImg} className="w-[330px]" />{" "}
+        <img src={images.RegisterImg} className="w-[330px]" />
       </section>
       <section>
         <form

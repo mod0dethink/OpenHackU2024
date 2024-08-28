@@ -1,9 +1,29 @@
 import React from "react";
 import { useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useLoader } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+
+import modelPath from "../assets/models/M_Shirt_long.glb"; // インポート
+
 import Sidebar from "../components/common/Aside";
 import Logo from "../components/layout/Layout";
 
 import images from "../components/common/AssetImg";
+
+const Model = ({ url }) => {
+  const gltf = useLoader(GLTFLoader, url);
+
+  // モデルの位置を調整
+  gltf.scene.position.set(0, 0, 0); // キャンバスの中心に配置
+  // モデルのスケールを調整
+  gltf.scene.scale.set(0.01, 0.01, 0.01);
+  // モデルの回転を調整して正面を向くようにする
+  gltf.scene.rotation.set(0, Math.PI, 0); // Y軸を中心に180度回転
+
+  return <primitive object={gltf.scene} />;
+};
 
 const Main = () => {
   //バックエンド用
@@ -51,12 +71,32 @@ const Main = () => {
 
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedClothes, setselectedClothes] = useState("");
+
+  /*---blender---*/
+
   return (
     <div className=" w-[100vw] h-screen flex flex-col justify-evenly items-center xl:flex-row">
       <Sidebar />
       <Logo />
       {/*blender*/}
-      <section className="bg-[#fff] text-[50px] rounded-[25px] min-w-[500px] min-h-[350px] xl:w-[700px] xl:h-[800px]"></section>
+      <section className="bg-[#fff] text-[50px] rounded-[25px] min-w-[500px] min-h-[350px] xl:w-[700px] xl:h-[800px]">
+        <Canvas
+          style={{
+            width: "100%",
+            height: "100%",
+            background: "#fff",
+          }}
+          camera={{ position: [0, 0, 5], fov: 50 }}
+        >
+          <ambientLight intensity={0.5} />
+          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+          <Model url={modelPath} />
+          <OrbitControls
+            minPolarAngle={Math.PI / 2} // 最小の縦回転角度を設定
+            maxPolarAngle={Math.PI / 2}
+          />
+        </Canvas>
+      </section>
       {/*ステータス設定*/}
       <section className="min-w-[500px] min-h-[400px] xl:w-[700px] xl:h-[800px]">
         <form className="xl:bg-[#00000000] bg-[#fff] rounded-[25px] flex flex-col xl:justify-between w-[100%] h-[100%]">

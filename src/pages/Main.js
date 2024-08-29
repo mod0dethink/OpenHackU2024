@@ -16,9 +16,9 @@ const Model = ({ url }) => {
   const gltf = useLoader(GLTFLoader, url);
 
   // モデルの位置を調整
-  gltf.scene.position.set(0, 0, 0); // キャンバスの中心に配置
+  gltf.scene.position.set(0, -2.5, 0); // キャンバスの中心に配置
   // モデルのスケールを調整
-  gltf.scene.scale.set(0.01, 0.01, 0.01);
+  gltf.scene.scale.set(0.02, 0.02, 0.02);
   // モデルの回転を調整して正面を向くようにする
   gltf.scene.rotation.set(0, Math.PI, 0); // Y軸を中心に180度回転
 
@@ -94,6 +94,8 @@ const Main = () => {
           <OrbitControls
             minPolarAngle={Math.PI / 2} // 最小の縦回転角度を設定
             maxPolarAngle={Math.PI / 2}
+            enablePan={false} // パン（移動）を無効にする
+            enableZoom={false} // ズームを無効にする
           />
         </Canvas>
       </section>
@@ -171,6 +173,11 @@ const Main = () => {
                 </div>
               </div>
             ))}
+            <div className="w-[100%] flex justify-end">
+              <button className="button-shadow2 text-[#fff] text-[32px] font-bold bg-[#626262] w-[150px] h-[50px] rounded-[25px]">
+                Go
+              </button>
+            </div>
           </div>
         </form>
       </section>

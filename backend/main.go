@@ -59,7 +59,8 @@ func main() {
 	router.POST("/signup", signUp)
 	router.POST("/login", login)
 	router.GET("/profile", profile)
-	router.POST("/update-username", updateUsername) // 新しいエンドポイントを追加
+	router.POST("/update-username", updateUsername)
+	router.POST("/update-model", updateModelHandler) // model.goのupdateModelHandlerを呼び出す
 
 	router.Run(":8080")
 }

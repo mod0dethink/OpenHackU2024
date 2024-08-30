@@ -3,6 +3,7 @@ import subprocess
 
 print('OrderRunPyを実行中')
 
+"""
 gender = sys.argv[1]
 clothing_type = sys.argv[2]
 height = float(sys.argv[3])
@@ -11,6 +12,7 @@ chest = float(sys.argv[5])
 shoulder = float(sys.argv[6])
 length = float(sys.argv[7])
 sleeve = float(sys.argv[8])
+"""
 
 scripts =[
     'blend_MensBody_Edit.py',

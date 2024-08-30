@@ -1,4 +1,4 @@
-#ボディーのscaleの計算を行う
+#ボディーの編集に使うscaleの計算を行う
 import sys
 
 

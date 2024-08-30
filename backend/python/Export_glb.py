@@ -1,3 +1,5 @@
+#blendをglb形式にするためのpy
+
 import bpy
 
 def export_blend_to_glb(blend_file_path, glb_file_path):

@@ -1,3 +1,5 @@
+#メンズのボディーの編集をする
+
 import bpy
 import os
 from mathutils import Vector

@@ -1,3 +1,8 @@
+#Bodyと服を合わせるscript
+
+
+
+
 import bpy
 import mathutils
 

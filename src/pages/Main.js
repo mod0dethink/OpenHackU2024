@@ -5,7 +5,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
-import modelPath from "../assets/models/M_Shirt_long.glb"; // インポート
+import modelPath from "../assets/models/Merged.glb"; // インポート
 
 import Sidebar from "../components/common/Aside";
 import Logo from "../components/layout/Layout";
@@ -16,16 +16,18 @@ const Model = ({ url }) => {
   const gltf = useLoader(GLTFLoader, url);
 
   // モデルの位置を調整
-  gltf.scene.position.set(0, -2.5, 0); // キャンバスの中心に配置
+  gltf.scene.position.set(0, 1, 0); // キャンバスの中心に配置
   // モデルのスケールを調整
   gltf.scene.scale.set(0.02, 0.02, 0.02);
   // モデルの回転を調整して正面を向くようにする
-  gltf.scene.rotation.set(0, Math.PI, 0); // Y軸を中心に180度回転
+  gltf.scene.rotation.set(0, 0, 0); // Y軸を中心に180度回転
 
   return <primitive object={gltf.scene} />;
 };
 
 const Main = () => {
+  const [selectedGender, setSelectedGender] = useState("");
+  const [selectedClothes, setSelectedClothes] = useState("");
   //バックエンド用
   //性別選択のステータス(name=sex)
   const genderOptions = [
@@ -42,18 +44,29 @@ const Main = () => {
 
   //数値設定
   const SizeName = [
-    "Height / 身長",
+    "Body Height / 自分の身長",
+    "Body Width / 自分の身幅",
+    "Sholder Width / 肩幅",
     "Sleeve length / 袖丈",
-    "Body width / 身幅",
+    "width / 身幅",
     "Outseam / 総丈",
   ];
-  const StateImg = [images.Height, images.Length, images.Wight, images.Outseam];
+  const StateImg = [
+    images.Height,
+    images.Wight,
+    "",
+    "",
+    images.Outseam,
+    images.Length,
+  ];
 
   const [numbers, setNumbers] = useState({
-    number1: "", //Height
-    number2: "", //Length
-    number3: "", //Width
-    number4: "", //Outseam
+    body_height: "", //body_height
+    body_width: "", //body_width
+    sholder: "", //肩幅
+    sleeve: "", //袖丈
+    width: "", //身幅
+    height: "", //総丈
   });
 
   //(入力時に状態を更新)
@@ -65,12 +78,16 @@ const Main = () => {
     }));
   };
 
+  const handleSubmit = () => {
+    console.log("Current status:");
+    console.log("Selected gender:", selectedGender);
+    console.log("Selected clothes:", selectedClothes);
+    console.log("Numbers:", numbers);
+  };
+
   //ラジオボタン用のCSS
   const buttonStyles =
     "flex flex-col justify-center items-center w-[60px] h-[60px] peer-checked:border-solid peer-checked:border-[1px] peer-checked:border-[#000] peer-checked:rounded-[10px]";
-
-  const [selectedGender, setSelectedGender] = useState("");
-  const [selectedClothes, setselectedClothes] = useState("");
 
   /*---blender---*/
 
@@ -101,7 +118,10 @@ const Main = () => {
       </section>
       {/*ステータス設定*/}
       <section className="min-w-[500px] min-h-[400px] xl:w-[700px] xl:h-[800px]">
-        <form className="xl:bg-[#00000000] bg-[#fff] rounded-[25px] flex flex-col xl:justify-between w-[100%] h-[100%]">
+        <form
+          onSubmit={handleSubmit}
+          className="xl:bg-[#00000000] bg-[#fff] rounded-[25px] flex flex-col xl:justify-between w-[100%] h-[100%]"
+        >
           {/*性別や服の種類を選択するセクション*/}
           <div className="flex justify-around items-center bg-[#fff] rounded-[25px] min-w-[300px] min-h-[200px] xl:w-[700px] xl:h-[350px]">
             <div className="flex flex-col space-y-10">
@@ -137,7 +157,7 @@ const Main = () => {
                         name="clothes"
                         value={value}
                         className="hidden peer"
-                        onChange={() => setselectedClothes(value)}
+                        onChange={() => setSelectedClothes(value)}
                         checked={selectedClothes === value}
                       />{" "}
                       <div className={buttonStyles}>
@@ -153,7 +173,7 @@ const Main = () => {
             </div>
           </div>
           {/*服の細かな数字、等を指定する*/}
-          <div className="flex flex-col justify-center items-center grid grid-cols-2 grid-rows-2 gap-4 bg-[#fff] rounded-[25px] min-w-[300px] min-h-[200px] xl:w-[700px] xl:h-[400px]">
+          <div className="flex flex-col justify-center items-center grid grid-cols-3 grid-rows-2 gap-6y bg-[#fff] rounded-[25px] min-w-[300px] min-h-[200px] xl:w-[700px] xl:h-[400px]">
             {Object.keys(numbers).map((key, index) => (
               <div
                 key={key}

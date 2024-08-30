@@ -12,6 +12,7 @@ P_Hight = None
 P_Width = None
 
 # コマンドライン引数が十分にあるか確認
+"""
 if len(sys.argv) > 3:
     try:
         # sys.argv[3] の値を float に変換し、Width に代入
@@ -35,7 +36,9 @@ else:
 
 P_Hight =  float(sys.argv[3])
 P_Width =  float(sys.argv[4])
-
+"""
+#P_Hight = 175
+#P_Width = 48
 
 Scale_Hi = P_Hight / Hight
 Scale_Wi = P_Width / Width

@@ -17,7 +17,7 @@ def export_blend_to_glb(blend_file_path, glb_file_path):
     print(f"ファイル '{blend_file_path}' を '{glb_file_path}' としてエクスポートしました。")
 
 # 使用例
-blend_file_path = 'C:/Users/2230372/MyData/Python/blend/Image.blend'  # 対象の.blendファイルパス
-glb_file_path = 'C:/Users/2230372/MyData/Python/blend/Image.glb'    # 出力する.glbファイルパス
+blend_file_path = './EditedModel/Merged.blend'  # 対象の.blendファイルパス
+glb_file_path = '../../src/assets/models/Merged.glb'    # 出力する.glbファイルパス
 
 export_blend_to_glb(blend_file_path, glb_file_path)

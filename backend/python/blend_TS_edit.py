@@ -203,8 +203,8 @@ def process_blender_file(input_file_path, output_file_path, object_name, Sleeve_
     bpy.ops.wm.save_as_mainfile(filepath=output_file_path)
 
 # 例: 変更対象のBlenderファイル、出力先ファイルを指定
-input_file = 'C:/Users/2230372/MyData/Python/blend/Test.blend'
-output_file = 'C:/Users/2230372/MyData/Python/blend/Edited_Tshirt.blend'
+input_file = './BlendModel/T-shirt_templete.blend'
+output_file = './EditedModel/Edited_Tshirt.blend'
 object_name = 'T-Shirt'
 Sleeve_group_name = 'Sleeve_Length'
 Width_group_name = 'Chect_Width'

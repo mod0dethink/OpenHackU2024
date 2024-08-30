@@ -1,10 +1,16 @@
 #ボディーのscaleの計算を行う
+import sys
+
 
 Hight = 160
 Width = 40
 
-P_Hight = 175
-P_Width = 48
+#P_Hight = 175
+#P_Width = 48
+
+P_Hight =  float(sys.argv[3])
+P_Width =  float(sys.argv[4])
+
 
 Scale_Hi = P_Hight / Hight
 Scale_Wi = P_Width / Width

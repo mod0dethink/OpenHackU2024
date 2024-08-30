@@ -1,3 +1,5 @@
+import sys
+
 # スケールの計算をここで行う
 st = 22#袖丈
 kt = 60#着丈
@@ -5,16 +7,17 @@ kata = 43#肩幅
 miha = 50#身幅
 
 
-#stnx = 24
-#ktnx =73
-#katanx = 58
-#mihanx = 64
 
-stnx = 25
-ktnx =72
-katanx = 62
-mihanx = 63
 
+#stnx = 25
+#ktnx =72
+#katanx = 62
+#mihanx = 63
+
+stnx =   float(sys.argv[8])
+ktnx = float(sys.argv[7])
+katanx = float(sys.argv[6])
+mihanx =  float(sys.argv[5])
 # 各スケールを計算
 katascale = katanx / kata
 ktscale = ktnx / kt

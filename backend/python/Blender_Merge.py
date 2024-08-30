@@ -52,8 +52,8 @@ def save_new_blend_file(output_file_path):
 
 # インポートするファイルとオブジェクト名
 files_and_objects = [
-    ('C:/Users/2230372/MyData/Python/blend/Edited_Tshirt.blend', 'T-Shirt'),
-    ('C:/Users/2230372/MyData/Python/blend/Edited_Male.blend', 'Body_low')
+    ('./EditedModel/Edited_Tshirt.blend', 'T-Shirt'),
+    ('./EditedModel/Edited_Male.blend', 'Body_low')
 ]
 
 obj1_name = "Body_low"
@@ -72,5 +72,5 @@ import_objects_from_files(files_and_objects)
 reset_object_location_to_origin(obj1_name,-150)
 reset_object_location_to_origin(obj2_name,-8*scale_values['ktscale'])
 # 新しいファイルとして保存
-new_file_path = 'C:/Users/2230372/MyData/Python/blend/Image.blend'
+new_file_path = './EditedModel/Merged.blend'
 save_new_blend_file(new_file_path)

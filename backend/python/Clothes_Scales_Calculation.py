@@ -13,12 +13,12 @@ stnx = 25
 ktnx =72
 katanx = 62
 mihanx = 63
-"""
+
 stnx =   float(sys.argv[8])
 ktnx = float(sys.argv[7])
 katanx = float(sys.argv[6])
 mihanx =  float(sys.argv[5])
-"""
+
 # 各スケールを計算
 katascale = katanx / kata
 ktscale = ktnx / kt

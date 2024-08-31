@@ -3,7 +3,6 @@ import subprocess
 
 print('OrderRunPyを実行中')
 
-"""
 gender = sys.argv[1]
 clothing_type = sys.argv[2]
 height = float(sys.argv[3])
@@ -12,7 +11,6 @@ chest = float(sys.argv[5])
 shoulder = float(sys.argv[6])
 length = float(sys.argv[7])
 sleeve = float(sys.argv[8])
-"""
 
 scripts =[
     'blend_MensBody_Edit.py',
@@ -24,14 +22,18 @@ scripts =[
 
 for script in scripts:
     print(f"実行中: {script}")
-    result = subprocess.run(['python', script], capture_output=True, text=True)
-    
-    # スクリプトの標準出力と標準エラー出力を表示
-    print(result.stdout)
-    if result.stderr:
-        print(f"エラー: {result.stderr}")
-    
-    # スクリプトが成功したか確認
-    if result.returncode != 0:
+    try:
+        # スクリプトの実行と結果のキャプチャ
+        result = subprocess.run(
+            ['python', script],
+            capture_output=True,
+            text=True,
+            check=True  # エラーがあれば例外を発生させる
+        )
+        # スクリプトの標準出力を表示
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
+        # スクリプトのエラー出力を表示
         print(f"{script} が失敗しました。終了します。")
+        print(f"エラー: {e.stderr}")
         break

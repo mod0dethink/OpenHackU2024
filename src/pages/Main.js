@@ -5,7 +5,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
-import modelPath from "../assets/models/Merged.glb"; // インポート
+import modelPath from "../assets/models/Image.glb"; // インポート
 
 import Sidebar from "../components/common/Aside";
 import Logo from "../components/layout/Layout";
@@ -83,6 +83,26 @@ const Main = () => {
     console.log("Selected gender:", selectedGender);
     console.log("Selected clothes:", selectedClothes);
     console.log("Numbers:", numbers);
+
+    const data = {
+      selectedGender,
+      selectedClothes,
+      numbers,
+    };
+
+    const jsonString = JSON.stringify(data);
+
+    // Blobを作成し、リンクとしてダウンロード
+    const blob = new Blob([jsonString], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "target_file.json";
+    link.click();
+
+    // リソースの開放
+    URL.revokeObjectURL(url);
   };
 
   //ラジオボタン用のCSS

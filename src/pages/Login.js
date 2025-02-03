@@ -25,10 +25,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/login", {
-        mailaddress: formData.email,
-        password: formData.pass,
-      }, { withCredentials: true });
+      const response = await axios.post(
+        "http://localhost:8080/login",
+        {
+          mailaddress: formData.email,
+          password: formData.pass,
+        },
+        { withCredentials: true }
+      );
       console.log(response.data);
       alert("ログインに成功しました");
       // 画面遷移するならここに処理を追加して

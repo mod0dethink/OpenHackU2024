@@ -100,3 +100,111 @@ body {
 }
 
 /**/
+
+.text-shadow {
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 1);
+}
+
+.section-bg-setting {
+  background-position: 50% 10%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn-ani {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.btn-ani::before {
+  content: "";
+  width: 0;
+  height: 3em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to right, #c1ede2, #c1cded);
+  transition: 0.5s ease;
+  display: block;
+  z-index: -1;
+}
+
+.btn-ani:hover::before {
+  width: 100%;
+}
+
+.text-vertical {
+  writing-mode: vertical-lr;
+}
+
+.title-hover {
+  transition: all 0.3s ease-in-out;
+}
+.title-hover:hover {
+  background-color: #ffffff00;
+  color: #ffffff;
+}
+
+.bb-text {
+  background-color: white;
+  color: black;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+}
+
+.title-bg-style {
+  background-color: #ffffff;
+  animation: title-bg-style-animation 4s ease-in-out infinite;
+}
+
+.title-bg-style:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.title-bg-style:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.title-bg-style:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes title-bg-style-animation {
+  0%,
+  20%,
+  100% {
+    background-color: #ffffff;
+    transform: translateY(0) scale(1);
+  }
+
+  10% {
+    background-color: #ffffff00;
+    color: #ffffff;
+    transform: translateY(-5%) scale(1.1);
+  }
+}
+
+.dawn-url {
+  position: absolute;
+  font-size: 15px;
+  width: 100px;
+  height: 100lvh;
+  padding-right: 5px;
+  margin-right: 5px;
+  right: 0%;
+  bottom: 50%;
+  color: white;
+  writing-mode: sideways-lr;
+  transform: translateY(50%);
+  transition: all 1s ease-in-out;
+}
+
+.dawn-url:hover {
+  width: 300px;
+  backdrop-filter: blur(10px);
+}

@@ -1,0 +1,31 @@
+.palast-variable {
+  font-family: "palast-variable", sans-serif;
+  font-variation-settings: "opsz" 160, "wght" 500;
+}
+
+.palast-variable-italic {
+  font-family: "palast-variable", sans-serif;
+  font-variation-settings: "opsz" 160, "wght" 500;
+  font-style: italic;
+}
+
+.kiwi-maru-regular {
+  font-family: "kiwi-maru", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.kinuta-maruminfuji-stdn {
+  font-family: kinuta-maruminfuji-stdn, serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.text-shadow-black {
+  text-shadow: 2px 2px 3px black;
+}
+
+.section-title {
+  border-left: solid white 1px;
+  font-size: 30px;
+}

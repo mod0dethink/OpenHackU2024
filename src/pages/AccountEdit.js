@@ -52,9 +52,13 @@ const AccountEdit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // デフォルトのフォーム送信を防止
     try {
-      const response = await axios.post("http://localhost:8080/update-username", {
-        new_username: formData.UserName,
-      }, { withCredentials: true }); // withCredentials オプションを追加
+      const response = await axios.post(
+        "http://localhost:8080/update-username",
+        {
+          new_username: formData.UserName,
+        },
+        { withCredentials: true }
+      ); // withCredentials オプションを追加
       console.log(response.data);
       alert("ユーザー名が正常に更新されました");
     } catch (error) {

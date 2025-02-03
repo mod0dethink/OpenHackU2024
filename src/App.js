@@ -3,6 +3,8 @@ import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import "./index.css";
+import "./assets/styles/animation.css";
+import "./assets/styles/fonts.css";
 import Sidebar from "./components/common/Aside";
 
 //ルーディングの読み込み

@@ -24,7 +24,7 @@ var err error
 
 func main() {
 	// MySQLデータベースへの接続設定
-	dsn := "root:114514z4Z@tcp(127.0.0.1:3306)/outfit?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:root@tcp(127.0.0.1:3306)/outfit?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("データベースへの接続に失敗しました")

@@ -1,26 +1,34 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 import modelPath from "../assets/models/Image.glb"; // インポート
+import modelPath2 from "../assets/models/Male_body.glb";
 
 import Sidebar from "../components/common/Aside";
 import Logo from "../components/layout/Layout";
 
 import images from "../components/common/AssetImg";
 
+let state = false;
+
 const Model = ({ url }) => {
   const gltf = useLoader(GLTFLoader, url);
+  const [bstate, setBstate] = useState(false);
 
   // モデルの位置を調整
-  gltf.scene.position.set(0, 1, 0); // キャンバスの中心に配置
+  state ? gltf.scene.position.set(0, 1, 0) : gltf.scene.position.set(0, -2, 0); // キャンバスの中心に配置
   // モデルのスケールを調整
   gltf.scene.scale.set(0.02, 0.02, 0.02);
   // モデルの回転を調整して正面を向くようにする
   gltf.scene.rotation.set(0, 0, 0); // Y軸を中心に180度回転
+
+  useEffect(() => {
+    setBstate(!bstate);
+  }, state);
 
   return <primitive object={gltf.scene} />;
 };
@@ -28,6 +36,7 @@ const Model = ({ url }) => {
 const Main = () => {
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedClothes, setSelectedClothes] = useState("");
+  const [model, setModel] = useState(false);
   //バックエンド用
   //性別選択のステータス(name=sex)
   const genderOptions = [
@@ -78,11 +87,11 @@ const Main = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("Current status:");
-    console.log("Selected gender:", selectedGender);
-    console.log("Selected clothes:", selectedClothes);
-    console.log("Numbers:", numbers);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    state = !state;
+    setModel(!model);
+    console.log(model);
 
     const data = {
       selectedGender,
@@ -121,13 +130,13 @@ const Main = () => {
           style={{
             width: "100%",
             height: "100%",
-            background: "#fff",
+            background: "#CCCCCC",
           }}
           camera={{ position: [0, 0, 5], fov: 50 }}
         >
           <ambientLight intensity={0.5} />
           <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-          <Model url={modelPath} />
+          <Model url={model ? modelPath : modelPath2} />
           <OrbitControls
             minPolarAngle={Math.PI / 2} // 最小の縦回転角度を設定
             maxPolarAngle={Math.PI / 2}
